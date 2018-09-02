@@ -1,0 +1,47 @@
+<%= form_with(model: word, local: true) do |form| %>
+  <% if word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(word.errors.count, "error") %> prohibited this word from being saved:</h2>
+
+      <ul>
+      <% word.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :id %>
+    <%= form.number_field :id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :option_1 %>
+    <%= form.text_field :option_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :option_2 %>
+    <%= form.text_field :option_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :option_3 %>
+    <%= form.text_field :option_3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :option_4 %>
+    <%= form.text_field :option_4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :answer %>
+    <%= form.text_field :answer %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
