@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :id %>
-    <%= form.number_field :id %>
-  </div>
-
-  <div class="field">
     <%= form.label :option_1 %>
     <%= form.text_field :option_1 %>
   </div>
@@ -40,6 +35,9 @@
     <%= form.label :answer %>
     <%= form.text_field :answer %>
   </div>
+
+  <!-- #TODO: valueにcategory_idを渡す -->
+  <%= form.hidden_field :category_id, value: 1 %>
 
   <div class="actions">
     <%= form.submit %>
