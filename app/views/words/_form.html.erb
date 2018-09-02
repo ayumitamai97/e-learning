@@ -36,8 +36,7 @@
     <%= form.text_field :answer %>
   </div>
 
-  <!-- #TODO: valueにcategory_idを渡す -->
-  <%= form.hidden_field :category_id, value: 1 %>
+  <%= form.hidden_field :category_id, value: params[:category_id] %>
 
   <div class="actions">
     <%= form.submit %>

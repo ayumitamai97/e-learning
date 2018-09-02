@@ -14,7 +14,7 @@ class WordsController < ApplicationController
 
   # GET /words/new
   def new
-    @word = Word.new
+    @word = Word.new(category_params)
   end
 
   # GET /words/1/edit
@@ -62,13 +62,15 @@ class WordsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_word
       @word = Word.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def word_params
       params.require(:word).permit(:id, :option_1, :option_2, :option_3, :option_4, :answer, :category_id)
+    end
+
+    def category_params
+      params.permit(:category_id)
     end
 end
