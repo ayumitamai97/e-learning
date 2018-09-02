@@ -13,6 +13,8 @@
     <% if user_signed_in? %>
       <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
     <% end %>
+    <%= link_to "Add A Word", new_word_path %>
+    <%= link_to "Add A Category", new_category_path %>
 
     <%= yield %>
   </body>
