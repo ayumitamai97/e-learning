@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :question %>
+    <%= form.text_field :question %>
+  </div>
+
+  <div class="field">
     <%= form.label :option_1 %>
     <%= form.text_field :option_1 %>
   </div>
@@ -36,7 +41,7 @@
     <%= form.text_field :answer %>
   </div>
 
-  <%= form.hidden_field :category_id, value: params[:category_id] %>
+  <%= form.hidden_field :category_id, value: params[:category_id] || params[:word][:category_id] %>
 
   <div class="actions">
     <%= form.submit %>

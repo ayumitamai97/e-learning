@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Id</th>
+      <th>Question</th>
       <th>Option 1</th>
       <th>Option 2</th>
       <th>Option 3</th>
@@ -20,6 +21,7 @@
     <% @words.each do |word| %>
       <tr>
         <td><%= word.id %></td>
+        <td><%= word.question %></td>
         <td><%= word.option_1 %></td>
         <td><%= word.option_2 %></td>
         <td><%= word.option_3 %></td>
