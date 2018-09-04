@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_163616) do
   end
 
   create_table "words", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "question"
     t.string "option_1"
     t.string "option_2"
     t.string "option_3"
