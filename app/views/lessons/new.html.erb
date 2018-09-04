@@ -1,5 +1,5 @@
 <h1>New Lesson</h1>
 
-<%= render 'form', lesson: @lesson, category_id: params[:category_id] %>
+<%= render 'start_lesson_form', lesson: @lesson, category_id: @category_id, submit_btn_name: "Start Lesson" %>
 
 <%= link_to 'Back', lessons_path %>

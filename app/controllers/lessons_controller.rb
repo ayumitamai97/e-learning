@@ -11,11 +11,17 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.json
   def show
+    lesson_id = params[:id].to_i
+    @category_id = Lesson.find(lesson_id).category_id
+    @category_title = Category.find(@category_id).title
+    @words = Category.find(@category_id).words[0] #TODO: wordごとにページ切り替え # まずは最初のquestion
   end
-
+  
   # GET /lessons/new
   def new
     @lesson = Lesson.new(user_and_cat_params)
+    @category_id = params[:category_id].to_i
+    @category_title = Category.find(@category_id).title
   end
 
   # GET /lessons/1/edit
@@ -26,6 +32,8 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
+    @category_id = params[:lesson][:category_id].to_i
+    @category_title = Category.find(@category_id).title
 
     respond_to do |format|
       if @lesson.save
@@ -76,4 +84,4 @@ class LessonsController < ApplicationController
     def lesson_params
       params.require(:lesson).permit(:user_id, :category_id)
     end
-  end
+end
