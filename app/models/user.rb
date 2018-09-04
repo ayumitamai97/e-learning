@@ -3,4 +3,9 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
+  attr_accessor :current_user
+
+  def admin?
+    admin
+  end
 end
