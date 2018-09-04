@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Lessons</h1>
+<% @categories.each do |category| %>
+  <%= link_to 'New Lesson in ' + category.title, new_lesson_path(category_id: category.id) %>
+<% end %>
+
+<h1>Past Lessons</h1>
 
 <table>
   <thead>
@@ -19,9 +23,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<% @categories.each do |category| %>
-  <%= link_to 'New Lesson in ' + category.title, new_lesson_path(category_id: category.id) %>
-<% end %>
