@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'users/index'
-    get 'users/new'
-    get 'users/create'
-    get 'users/edit'
-    get 'users/update'
-    get 'users/destroy'
-    get 'users/show'
-  end
   root "categories#index"
 
   devise_for :users
@@ -17,6 +8,8 @@ Rails.application.routes.draw do
   resources :categories
 
   namespace :admin do
+    root "categories#index"
+
     devise_for :users
     resources :users
     resources :categories
