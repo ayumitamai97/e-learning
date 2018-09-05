@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "categories#index"
 
   devise_for :users
-  resources :users
+  resources :users, only: [:index, :show]
   resources :lessons
   resources :words
   resources :categories
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     root "categories#index"
 
     devise_for :users
-    resources :users
+    resources :users, only: [:index, :edit, :update, :destroy]
     resources :categories
     resources :words
     resources :lessons

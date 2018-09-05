@@ -11,9 +11,11 @@
   </tr>
   <% @users.each do |user| %>
     <tr>
+      <%#TODO: enable to upload avator %>
       <td><%# user.avator %></td>
-      <td><%# user.name %></td>
+      <td><%= user.name %></td>
       <td><%= user.email %></td>
+      <td><%= user.admin %></td>
     </tr>
   <% end %>
 </table>

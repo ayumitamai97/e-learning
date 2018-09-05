@@ -15,7 +15,7 @@
   <% @users.each do |user| %>
     <tr>
       <td><%# user.avator %></td>
-      <td><%# user.name %></td>
+      <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.created_at %></td>
       <td><%= user.admin %></td>

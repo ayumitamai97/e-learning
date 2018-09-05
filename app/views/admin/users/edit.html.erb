@@ -1,2 +1,27 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<h1>Editing User As an Administrator</h1>
+
+<%= link_to 'Back', admin_users_path %>
+
+<%= form_with(model: @user, url: "/admin/users", method: :put, local: true) do |f| %>
+
+  <%= f.hidden_field :id, value: params[:id] %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, autocomplete: "on" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :admin %>
+    <%= f.select :admin, [true, false] %>
+  </div>
+
+    <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
