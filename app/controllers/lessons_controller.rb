@@ -1,15 +1,11 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
 
-  # GET /lessons
-  # GET /lessons.json
   def index
     @lessons = Lesson.all
     @categories = Category.all
   end
 
-  # GET /lessons/1
-  # GET /lessons/1.json
   def show
     lesson_id = params[:id].to_i
     @category_id = Lesson.find(lesson_id).category_id
@@ -17,19 +13,15 @@ class LessonsController < ApplicationController
     @words = Category.find(@category_id).words[0] #TODO: wordごとにページ切り替え # まずは最初のquestion
   end
   
-  # GET /lessons/new
   def new
     @lesson = Lesson.new(user_and_cat_params)
     @category_id = params[:category_id].to_i
     @category_title = Category.find(@category_id).title
   end
 
-  # GET /lessons/1/edit
   def edit
   end
 
-  # POST /lessons
-  # POST /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
     @category_id = params[:lesson][:category_id].to_i
@@ -46,8 +38,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /lessons/1
-  # PATCH/PUT /lessons/1.json
   def update
     respond_to do |format|
       if @lesson.update(lesson_params)
@@ -60,8 +50,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  # DELETE /lessons/1
-  # DELETE /lessons/1.json
   def destroy
     @lesson.destroy
     respond_to do |format|
@@ -71,12 +59,10 @@ class LessonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_and_cat_params
       params.permit(:user_id, :category_id)
     end

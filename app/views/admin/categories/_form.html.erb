@@ -21,6 +21,8 @@
     <%= form.text_area :description %>
   </div>
 
+  <%= form.hidden_field :id, value: params[:id] || params[:category][:id] %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

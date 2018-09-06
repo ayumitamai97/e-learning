@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :destroy]
   #TODO: before_action :require_login in all controllers!!!!!
   before_action :authorize
 
@@ -30,6 +30,8 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def update
+    @category = Category.find(params[:category][:id]) || Category.find(params[:id])
+
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to admin_categories_path, notice: 'Category was successfully updated.' }
@@ -52,7 +54,7 @@ class Admin::CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:title, :description)
+      params.require(:category).permit(:id, :title, :description)
     end
 
     def authorize

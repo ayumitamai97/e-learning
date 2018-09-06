@@ -15,5 +15,9 @@ Rails.application.routes.draw do
     resources :categories
     resources :words
     resources :lessons
+
+    # resourcesで指定しても以下が設定されない
+    patch "/categories", to: "categories#update"
+    patch "/words", to: "words#update"
   end
 end

@@ -28,9 +28,9 @@
         <td><%= word.option_4 %></td>
         <td><%= word.answer %></td>
         <td><%= word.category_id %></td>
-        <td><%= link_to 'Show', word %></td>
-        <td><%= link_to 'Edit', edit_word_path(word) %></td>
-        <td><%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_word_path(word.id) %></td>
+        <td><%= link_to 'Edit', edit_admin_word_path(word) %></td>
+        <td><%= link_to 'Destroy', admin_word_path(word.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
