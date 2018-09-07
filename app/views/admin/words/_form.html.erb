@@ -41,8 +41,9 @@
     <%= form.text_field :answer %>
   </div>
 
-  <%= form.hidden_field :category_id, value: params[:category_id] || word.category_id || params[:word][:category_id] %>
-  <%= form.hidden_field :id, value: params[:word][:id] || params[:id] %>
+  <%= form.hidden_field :category_id,
+    value: params[:category_id] || word.category_id || params[:word][:category_id] %>
+  <%= form.hidden_field :id, value: params[:word].present? ? params[:word][:id] : params[:id] %>
 
   <div class="actions">
     <%= form.submit %>
