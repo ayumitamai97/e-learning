@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, only: [:index, :show]
-  resources :lessons
+  resources :lessons do
+    resources :words
+    get "/result", to: "words#result", as: "result"
+  end
   resources :words
   resources :categories
 
@@ -12,7 +15,8 @@ Rails.application.routes.draw do
 
     devise_for :users
     resources :users, only: [:index, :edit, :update, :destroy] do
-      resources :lessons
+      resources :lessons do
+      end
     end
 
     resources :categories

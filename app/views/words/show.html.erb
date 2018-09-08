@@ -1,0 +1,20 @@
+<% word = Word.find(params[:id]) %>
+<%= form_with(url: lesson_word_path(id: params[:id], lesson_id: params[:lesson_id]),
+      method: :put, local: true) do |form| %>
+  <p><%= word.question %></p>
+
+  <%= form.label word.option_1, for: "option_" + word.option_1 %>
+  <%= form.radio_button :option, word.option_1 %>
+  <%= form.label word.option_2, for: "option_" + word.option_2 %>
+  <%= form.radio_button :option, word.option_2 %>
+  <%= form.label word.option_3, for: "option_" + word.option_3 %>
+  <%= form.radio_button :option, word.option_3 %>
+  <%= form.label word.option_4, for: "option_" + word.option_4 %>
+  <%= form.radio_button :option, word.option_4 %>
+
+  <%= form.hidden_field :lesson_id, value: params[:lesson_id] %>
+
+  <p><%= form.submit "Next Question" %></p>
+  <% end %>
+
+<%= link_to 'Back', lessons_path %>

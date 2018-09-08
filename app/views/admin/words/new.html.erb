@@ -1,4 +1,9 @@
-<h1>New Word In <%#TODO: category title %></h1>
+<h1>
+  New Word In 
+  <%= params[:word] ?
+      Category.find(params[:word][:category_id]).title :
+      Category.find(params[:category_id]).title %>
+</h1>
 
 <%= render 'form', word: @word %>
 

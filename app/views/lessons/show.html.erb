@@ -3,12 +3,7 @@
 <p id="notice"><%= notice %></p>
 
 <% unless current_user.admin? %>
-  <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
   <%= link_to 'Back', lessons_path %>
 <% end %>
 
-<p>1. <%= @words.option_1 %></p>
-<p>2. <%= @words.option_2 %></p>
-<p>3. <%= @words.option_3 %></p>
-<p>4. <%= @words.option_4 %></p>
-<p>answer: <%= @words.answer %></p> <%#TODO: あとでけす %>
+<%= @words.map(&:id) %>

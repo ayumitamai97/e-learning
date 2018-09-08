@@ -10,7 +10,7 @@ class LessonsController < ApplicationController
     lesson_id = params[:id].to_i
     @category_id = Lesson.find(lesson_id).category_id
     @category_title = Category.find(@category_id).title
-    @words = Category.find(@category_id).words[0] #TODO: wordごとにページ切り替え # まずは最初のquestion
+    @words = Category.find(@category_id).words
   end
   
   def new
@@ -19,43 +19,26 @@ class LessonsController < ApplicationController
     @category_title = Category.find(@category_id).title
   end
 
-  def edit
-  end
-
   def create
     @lesson = Lesson.new(lesson_params)
-    @category_id = params[:lesson][:category_id].to_i
+    @category_id = params[:category_id].to_i
     @category_title = Category.find(@category_id).title
 
-    respond_to do |format|
-      if @lesson.save
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
-        format.json { render :show, status: :created, location: @lesson }
-      else
-        format.html { render :new }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    word_ids = Category.find(@category_id).words.map(&:id)
+    answered_word_ids = WordAnswer.where(user_id: current_user.id, category_id: @category_id).map(&:word_id).uniq
+    remaining_words = Category.find(@category_id).words.where.not(id: answered_word_ids)
 
-  def update
-    respond_to do |format|
-      if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lesson }
-      else
-        format.html { render :edit }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
-      end
+    if remaining_words.blank?
+      redirect_to lessons_path, flash: { notice: "You have already done the requested lesson." }
+      return
     end
-  end
 
-  def destroy
-    @lesson.destroy
-    respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @lesson.save
+
+    words = Category.find(@category_id).words
+    word = words.first
+
+    redirect_to lesson_word_path(lesson_id: @lesson.id, id: word.id)
   end
 
   private
@@ -68,6 +51,6 @@ class LessonsController < ApplicationController
     end
 
     def lesson_params
-      params.require(:lesson).permit(:user_id, :category_id)
+      params.permit(:user_id, :category_id)
     end
 end

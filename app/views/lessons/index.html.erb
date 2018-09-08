@@ -1,7 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <% @categories.each do |category| %>
-  <%= link_to 'New Lesson in ' + category.title, new_lesson_path(category_id: category.id) %>
+
+  <%= form_with(url: lessons_path, local: true) do |form| %>
+    <%= form.hidden_field :category_id, value: category.id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+
+    <div class="actions">
+      <%= form.submit "Start Lesson in " + category.title %>
+    </div>
+  <% end %>
 <% end %>
 
 <h1>Past Lessons</h1>
@@ -17,8 +25,6 @@
     <% @lessons.each do |lesson| %>
       <tr>
         <td><%= link_to 'Show', lesson %></td>
-        <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-        <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
