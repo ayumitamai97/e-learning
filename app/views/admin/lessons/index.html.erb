@@ -1,5 +1,5 @@
 <h1><%= @user.name %>'s Lessons</h1>
-  <% if @lessons.nil? %>
+<% if @lessons.blank? %>
   <p><%= @user.name %> has no lessons.</p>
 <% else %>
   <table>
