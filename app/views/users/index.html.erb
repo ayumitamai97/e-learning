@@ -4,18 +4,22 @@
 <p class="alert"><%= alert %></p>
 
 <table>
-  <tr>
-    <th>Avator</th>
-    <th>Name</th>
-    <th>Email</th>
-  </tr>
-  <% @users.each do |user| %>
+  <thead>
     <tr>
-      <%#TODO: enable to upload avator %>
-      <td><%# user.avator %></td>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.admin %></td>
+      <th>Avator</th>
+      <th>Name</th>
+      <th>Email</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <%#TODO: enable to upload avator %>
+        <td><%# user.avator %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

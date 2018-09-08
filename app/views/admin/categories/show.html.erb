@@ -10,7 +10,30 @@
   <%= @category.description %>
 </p>
 
-<%#TODO: show each words %>
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Option 1</th>
+      <th>Option 2</th>
+      <th>Option 3</th>
+      <th>Option 4</th>
+      <th>Answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @category.words.each do |word| %>
+    <tr>
+      <td><%= word.question %></td>
+      <td><%= word.option_1 %></td>
+      <td><%= word.option_2 %></td>
+      <td><%= word.option_3 %></td>
+      <td><%= word.option_4 %></td>
+      <td><%= word.answer %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_admin_category_path(@category) %> |
 <%= link_to 'Back', admin_categories_path %>

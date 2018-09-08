@@ -3,19 +3,23 @@
   <p><%= @user.name %> has no lessons.</p>
 <% else %>
   <table>
-    <tr>
-      <th>Lesson ID</th>
-      <th>Category</th>
-      <th>Date</th>
-    </tr>
-    <% @lessons.each do |lesson| %>
+    <thead>
       <tr>
-        <td><%= lesson.id %></td>
-        <td><%= Category.find(lesson.category_id).title %></td>
-        <%#TODO?: this always throw error if category was not found%>
-        <td><%= lesson.created_at %></td>
-        <td><%= link_to "Detail", lesson %></td>
+        <th>Lesson ID</th>
+        <th>Category</th>
+        <th>Date</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% @lessons.each do |lesson| %>
+        <tr>
+          <td><%= lesson.id %></td>
+          <td><%= Category.find(lesson.category_id).title %></td>
+          <%#TODO?: this always throw error if category was not found%>
+          <td><%= lesson.created_at %></td>
+          <td><%= link_to "Detail", lesson %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
 <% end %>
