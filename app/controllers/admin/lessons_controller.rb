@@ -2,7 +2,9 @@ class Admin::LessonsController < ApplicationController
   before_action :authorize
 
   def index
-    @users = User.all
+    user_id = params[:user_id]
+    @user = User.find(user_id)
+    @lessons = @user.lessons
   end
 
   def show

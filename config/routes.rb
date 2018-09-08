@@ -11,10 +11,12 @@ Rails.application.routes.draw do
     root "categories#index"
 
     devise_for :users
-    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :users, only: [:index, :edit, :update, :destroy] do
+      resources :lessons
+    end
+
     resources :categories
     resources :words
-    resources :lessons
 
     # resourcesで指定しても以下が設定されない
     patch "/categories", to: "categories#update"

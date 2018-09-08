@@ -2,8 +2,10 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', lessons_path %>
+<% unless current_user.admin? %>
+  <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
+  <%= link_to 'Back', lessons_path %>
+<% end %>
 
 <p>1. <%= @words.option_1 %></p>
 <p>2. <%= @words.option_2 %></p>
