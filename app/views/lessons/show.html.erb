@@ -1,9 +1,7 @@
-<h2>Lesson in <%= @category_title %></h2>
-
-<p id="notice"><%= notice %></p>
+<h2><%= @user.name %>'s Lesson in <%= @category.title %></h2>
 
 <% unless current_user.admin? %>
   <%= link_to 'Back', lessons_path %>
 <% end %>
 
-<%= @words.map(&:id) %>
+<%= render "words/result_table" %>

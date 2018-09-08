@@ -7,10 +7,6 @@ class Admin::LessonsController < ApplicationController
     @lessons = @user.lessons
   end
 
-  def show
-    # show each lesson
-  end
-
   private
     def authorize
       redirect_to root_path unless current_user.admin?

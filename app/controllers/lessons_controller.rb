@@ -7,10 +7,11 @@ class LessonsController < ApplicationController
   end
 
   def show
-    lesson_id = params[:id].to_i
-    @category_id = Lesson.find(lesson_id).category_id
-    @category_title = Category.find(@category_id).title
-    @words = Category.find(@category_id).words
+    lesson = Lesson.find(params[:id])
+    @category = lesson.category
+    @words = Category.find(@category.id).words
+    @word_answers = WordAnswer.where(category_id: @category.id).order("word_id")
+    @user = lesson.user
   end
   
   def new
