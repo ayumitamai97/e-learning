@@ -1,5 +1,6 @@
 class Admin::WordsController < ApplicationController
   before_action :set_word, only: [:show, :edit, :destroy]
+  before_action :authorize
 
   def index
     @words = Word.all
@@ -59,5 +60,9 @@ class Admin::WordsController < ApplicationController
 
     def category_params
       params.permit(:category_id)
+    end
+
+    def authorize
+      redirect_to root_path unless current_user.admin?
     end
 end
