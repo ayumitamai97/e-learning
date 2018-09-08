@@ -24,7 +24,7 @@
   <tbody>
     <% @lessons.each do |lesson| %>
       <tr>
-        <td><%= link_to 'Show', lesson %></td>
+        <td><%= link_to Category.find(lesson.category_id).title, lesson %></td>
       </tr>
     <% end %>
   </tbody>

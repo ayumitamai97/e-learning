@@ -1,14 +1,10 @@
 <h1>Users</h1>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
 <table>
   <thead>
     <tr>
       <th>Avator</th>
       <th>Name</th>
-      <th>Email</th>
     </tr>
   </thead>
   <tbody>
@@ -17,8 +13,7 @@
         <%#TODO: enable to upload avator %>
         <td><%# user.avator %></td>
         <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.admin %></td>
+        <td><%= link_to "Detail", user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>
