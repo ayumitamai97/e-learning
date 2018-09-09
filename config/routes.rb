@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "categories#index"
+  root "activities#index"
 
   devise_for :users
   resources :users, only: [:index, :show] do
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
   resources :words
   resources :categories
+
+  resources :activities, only: :index
 
   namespace :admin do
     root "categories#index"

@@ -1,12 +1,3 @@
-<p>Learned Words: 
-    <%= WordAnswer.eager_load(lesson: { category: :words })
-        .where("words.answer = word_answers.answer and word_answers.user_id = #{user.id}").count %>
-</p>
-<p>Learned Lessons: 
-    <%= WordAnswer.eager_load(lesson: { category: :words })
-        .where("words.answer = word_answers.answer and word_answers.user_id = #{user.id}").count %>
-</p>
-  
 <% user.activities.each do |activity| %>
   <% if activity.lesson_id.present? %>
     <p>

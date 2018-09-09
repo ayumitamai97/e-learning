@@ -1,0 +1,9 @@
+<h1><%= @user.name %></h1>
+<h2>Your Activities</h2>
+<%= render "activities/summary", user: @user %>
+<%= render "activities/activity", user: @user %>
+
+<h2>Following Users' Activities</h2>
+<% @followings.each do |following| %>
+  <%= render "activities/activity", user: following %>
+<% end %>
