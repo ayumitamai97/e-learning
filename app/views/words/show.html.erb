@@ -1,4 +1,5 @@
 <% word = Word.find(params[:id]) %>
+
 <p><%= (@answered_word_ids.count + 1).to_s + " / " + @lesson.category.words.count.to_s + " words" %></p>
 <%= form_with(url: lesson_word_path(id: params[:id], lesson_id: @lesson.id),
       method: :put, local: true) do |form| %>

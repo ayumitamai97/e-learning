@@ -15,7 +15,7 @@ class WordsController < ApplicationController
     word_id = params[:id]
     answer = params[:option]  
 
-    WordAnswer.create(
+    WordAnswer.create!(
       user_id: current_user.id,
       category_id: @category_id,
       lesson_id: @lesson_id,
@@ -47,7 +47,8 @@ class WordsController < ApplicationController
 
     def check_remaining_words
       word_ids = Category.find(@category_id).words.map(&:id)
-      @answered_word_ids = WordAnswer.where(user_id: current_user.id, category_id: @category_id).map(&:word_id).uniq
+      @answered_word_ids = WordAnswer.where(user_id: current_user.id, category_id: @category_id).where("answer IS NOT NULL").map(&:word_id).uniq
+      #TODO: scope
       @remaining_words = Category.find(@category_id).words.where.not(id: @answered_word_ids)
     end
 end
