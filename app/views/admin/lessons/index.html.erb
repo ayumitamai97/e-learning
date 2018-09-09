@@ -14,8 +14,7 @@
       <% @lessons.each do |lesson| %>
         <tr>
           <td><%= lesson.id %></td>
-          <td><%= Category.find(lesson.category_id).title %></td>
-          <%#TODO?: this always throw error if category was not found%>
+          <td><%= Category.find(lesson.category_id).title if Category.find(lesson.category_id) %></td>
           <td><%= lesson.created_at %></td>
           <td><%= link_to "Detail", lesson %></td>
         </tr>

@@ -12,4 +12,11 @@ class User < ApplicationRecord
   def admin?
     admin
   end
+
+  def finished_lesson?(user_id: current_user.id, category_id:)
+    User.find(user_id).lessons
+      .where(category_id: category_id)
+      .map{|lesson| lesson.word_answers.count == lesson.category.words.count }
+      .first # array contents count should be zero or one
+  end
 end

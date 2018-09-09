@@ -12,9 +12,11 @@ User.create!(name: "Taro Yamada",
               admin: false)
 end
 
-100.times do
-  Category.find(6).words.create(
-    question: "cat", option_1: "いぬ", option_2: "ねこ", option_3: "やぎ", option_4: "ひつじ", answer: "ねこ")
+50.times do
+  Category.take(10).each do |category|
+    category.words.create(
+      question: "cat", option_1: "いぬ", option_2: "ねこ", option_3: "やぎ", option_4: "ひつじ", answer: "ねこ")
+  end
 end
 
 100.times do |time|
