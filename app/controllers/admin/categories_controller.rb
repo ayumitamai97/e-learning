@@ -1,6 +1,5 @@
 class Admin::CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :destroy]
-  #TODO: before_action :require_login in all controllers!!!!!
   before_action :authorize
 
   def index

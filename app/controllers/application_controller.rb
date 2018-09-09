@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :require_login, unless: :devise_controller?
 
   protected
-
+  
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:avatar])
+  end
+
+  def require_login
+    redirect_to new_user_session_path unless current_user
   end
 end
