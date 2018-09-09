@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="pt-2 pb-2 pr-5 pl-5">
       <% if user_signed_in? %>
         <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
 
@@ -30,7 +30,8 @@
         <%= link_to "Sign In", new_user_session_path, method: :post %>
       <% end %>
     </header>
-
-    <%= yield %>
+    <div class="container mb-5 mt-2">
+      <%= yield %>
+    </div>
   </body>
 </html>
