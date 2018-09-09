@@ -1,5 +1,6 @@
 <h1><%= @user.name %></h1>
 <%# @user.avator %>
+<%= render "follow_form", user: @user.id %>
 
 <p>Learned Words: 
   <%= WordAnswer.eager_load(lesson: {category: :words}).where("words.answer = word_answers.answer").count %>
