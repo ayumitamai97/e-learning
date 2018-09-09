@@ -1,6 +1,6 @@
-User.all.each{ |user| user.destoy }
-Category.all.each{ |cat| cat.destoy }
-Word.all.each{ |word| word.destoy }
+User.all.each{ |user| user.destroy }
+Category.all.each{ |cat| cat.destroy }
+Word.all.each{ |word| word.destroy }
 
 User.create!(name: "Taro Yamada",
             email: "taro@example.com",
