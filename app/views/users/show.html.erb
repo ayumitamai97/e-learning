@@ -16,7 +16,11 @@
 <h2>Activities</h2>
 <% @user.activities.each do |activity| %>
   <% if activity.lesson_id.present? %>
-    <p><%= @user.name %> have done <%= activity.lesson_id %> at <%= activity.created_at %></p>
+    <p>
+      <%= @user.name %> has done 
+      <%= link_to Lesson.find(activity.lesson_id).category.title, Lesson.find(activity.lesson_id) %> 
+      at <%= activity.created_at %>
+    </p>
   <% elsif activity.following_id.present? %>
     <p>
       <%= @user.name %> followed 
