@@ -1,4 +1,7 @@
 2018/9/9 デザイン以外完了\\('o')/ http://ayumi-elearning.herokuapp.com/
+サンプルユーザー(admin):
+  email: taro@example.com
+  password: super_strong_password
 
 # README
 ```bash
