@@ -15,13 +15,13 @@ class UsersController < ApplicationController
 
   def follow
     following_id = params[:following_id]
-    current_user.active_relationships.create!(follower_id: current_user.id, following_id: following_id)
+    current_user.relationships.create!(follower_id: current_user.id, following_id: following_id)
   end
 
   def unfollow
     following_id = params[:following_id]
     relationship = 
-      current_user.active_relationships.where(follower_id: current_user.id, following_id: following_id).first
+      current_user.relationships.where(follower_id: current_user.id, following_id: following_id).first
     relationship.destroy
   end
 end

@@ -1,4 +1,6 @@
-<% if @current_user_followings.include?(user) %>
+<% if user == current_user.id %>
+  <%= button_to "You", user_path(user), method: :get %>
+<% elsif @current_user_followings.include?(user) %>
   <%= button_to "Unfollow", user_unfollow_path(following_id: user, user_id: current_user.id) %>
 <% else %>
   <%= button_to "Follow", user_follow_path(following_id: user, user_id: current_user.id) %>
