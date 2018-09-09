@@ -44,3 +44,10 @@ header{
 h1, h2{
   font-weight: 700;
 }
+
+td img{
+  max-width: 50px;
+  max-height: 50px;
+  width: auto;
+  height: auto;
+}

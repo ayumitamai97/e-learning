@@ -1,4 +1,6 @@
 <h1><%= @user.name %></h1>
+<%= image_tag @user.avatar.url if @user.avatar.url %>
+
 <h2>Your Activities</h2>
 <%= render "activities/summary", user: @user %>
 <%= render "activities/activity", user: @user %>

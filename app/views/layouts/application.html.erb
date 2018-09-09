@@ -24,7 +24,8 @@
           <%= link_to "Lessons", lessons_path %>
           <%= link_to "Categories", categories_path %>
           <%= link_to "Users", users_path %>
-        <% end %>
+          <% end %>
+        <%= link_to "Settings", "/users/edit" %>
 
       <% else %>
         <%= link_to "Sign In", new_user_session_path, method: :post %>
