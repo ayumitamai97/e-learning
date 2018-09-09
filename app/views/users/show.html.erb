@@ -2,10 +2,6 @@
 <%# @user.avator %>
 <%= render "follow_form", user: @user.id %>
 
-<p>Learned Words: 
-  <%= WordAnswer.eager_load(lesson: {category: :words}).where("words.answer = word_answers.answer").count %>
-</p>
-
 <h2>Followings</h2>
 <% @user_followings.each do |following| %>
   <%= User.find(following).name %>
@@ -19,23 +15,4 @@
 <% end %>
 
 <h2>Activities</h2>
-<% @user.activities.each do |activity| %>
-  <% if activity.lesson_id.present? %>
-    <p>
-      <%= @user.name %> has done the lesson 
-      <%= link_to Lesson.find(activity.lesson_id).category.title, Lesson.find(activity.lesson_id) %> 
-      at <%= activity.created_at %> (Correct: 
-      <%= WordAnswer.eager_load(lesson: {category: :words})
-            .where("words.answer = word_answers.answer and lessons.id = #{activity.lesson_id}").count %>
-      / <%= WordAnswer.eager_load(lesson: {category: :words}).where("lessons.id = #{activity.lesson_id}").count %>)
-    </p>
-  <% elsif activity.following_id.present? %>
-    <p>
-      <%= @user.name %> followed 
-      <b>
-        <%= link_to User.find(activity.following_id).name, user_path(activity.following_id) %>
-      </b> 
-      at <%= activity.created_at %>
-    </p>
-  <% end %>
-<% end %>
+<%= render "activities/activity", user: @user %>
