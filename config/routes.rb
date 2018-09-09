@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   root "categories#index"
 
   devise_for :users
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    post "/follow", to: "users#follow"
+    post "/unfollow", to: "users#unfollow"
+  end
   resources :lessons do
     resources :words
     get "/result", to: "words#result", as: "result"

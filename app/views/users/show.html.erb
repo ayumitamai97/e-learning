@@ -1,1 +1,14 @@
-<%#TODO %>
+<h1><%= @user.name %></h1>
+<%# @user.avator %>
+
+<h2>Followings</h2>
+<% @user_followings.each do |following| %>
+  <%= User.find(following).name %>
+  <%= render "follow_form", user: following %>
+<% end %>
+
+<h2>Followers</h2>
+<% @user_followers.each do |follower| %>
+  <%= User.find(follower).name %>
+  <%= render "follow_form", user: follower %>
+<% end %>
