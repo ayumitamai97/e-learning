@@ -6,7 +6,7 @@
 <table>
     <thead>
     <tr>
-      <th>Avator</th>
+      <th>Avatar</th>
       <th>Name</th>
       <th>Email</th>
       <th>Created At</th>
@@ -17,7 +17,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%# user.avator %></td>
+        <td><%= image_tag user.avatar.url if user.avatar.url %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at %></td>

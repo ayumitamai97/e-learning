@@ -3,15 +3,14 @@
 <table>
   <thead>
     <tr>
-      <th>Avator</th>
+      <th>Avatar</th>
       <th>Name</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <%#TODO: enable to upload avator %>
-        <td><%# user.avator %></td>
+        <td><%= image_tag user.avatar.url if user.avatar.url %></td>
         <td><%= user.name %></td>
         <td><%= link_to "Detail", user_path(user) %></td>
         <td><%= render "follow_form", user: user.id %></td>

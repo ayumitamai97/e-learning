@@ -6,6 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+  mount_uploader :avatar, AvatarUploader
   attr_accessor :current_user
 
   def admin?
