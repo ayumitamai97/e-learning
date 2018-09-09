@@ -1,0 +1,22 @@
+<h1>Learned Words</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Your Answer</th>
+      <th>Correct Answer</th>
+      <th>Correct?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users_answers.each do |users_answer| %>
+      <% word = Word.find(users_answer.word_id) %>
+      <tr>
+        <td><%= word.question %></td>
+        <td><%= users_answer.answer %></td>
+        <td><%= word.answer %></td>
+        <td><%= users_answer.answer == word.answer %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

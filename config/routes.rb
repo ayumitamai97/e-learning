@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :activities, only: :index
+  get "/activities/words_detail", to: "activities#words_detail"
 
   namespace :admin do
     root "categories#index"

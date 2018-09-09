@@ -1,4 +1,4 @@
-<% user.activities.each do |activity| %>
+<% user.activities.order("id desc").each do |activity| %>
   <% if activity.lesson_id.present? %>
     <p>
       <%= user.name %> has done the lesson 
@@ -7,6 +7,7 @@
       <%= WordAnswer.eager_load(lesson: { category: :words })
             .where("words.answer = word_answers.answer and lessons.id = #{activity.lesson_id}").count %>
       / <%= WordAnswer.eager_load(lesson: { category: :words }).where("lessons.id = #{activity.lesson_id}").count %>)
+      <%#TODO?: scope使うかどうしようか %>
     </p>
   <% elsif activity.following_id.present? %>
     <p>

@@ -1,3 +1,9 @@
 <h1>Lesson result in <%= @category.title %></h1>
 
 <%= render "result_table" %>
+
+<p>Correct: 
+  <%= WordAnswer.eager_load(lesson: { category: :words })
+    .where("words.answer = word_answers.answer and lessons.id = #{@lesson.id}").count %> / 
+  <%= @lesson.category.words.count %>
+</p>

@@ -1,8 +1,8 @@
 <p>Learned Words: 
-    <%= WordAnswer.eager_load(lesson: { category: :words })
-        .where("words.answer = word_answers.answer and word_answers.user_id = #{user.id}").count %>
+  <%= link_to WordAnswer.eager_load(lesson: { category: :words })
+                .where("word_answers.user_id = #{user.id}").count,
+              activities_words_detail_path %>
 </p>
 <p>Learned Lessons: 
-    <%= WordAnswer.eager_load(lesson: { category: :words })
-        .where("words.answer = word_answers.answer and word_answers.user_id = #{user.id}").count %>
+    <%= link_to user.lessons.count, lessons_path %>
 </p>

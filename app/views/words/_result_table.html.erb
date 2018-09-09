@@ -12,8 +12,13 @@
       <tr>
         <td><%= word.question %></td>
         <td><%= word.answer %></td>
-        <td><%= @word_answers.find_by(word_id: word.id).answer %></td>
-        <td><%= @word_answers.find_by(word_id: word.id).answer == word.answer %></td>
+        <% if @word_answers.find_by(word_id: word.id) %>
+          <td><%= @word_answers.find_by(word_id: word.id).answer %></td>
+          <td><%= @word_answers.find_by(word_id: word.id).answer == word.answer %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>

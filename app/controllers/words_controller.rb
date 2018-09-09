@@ -8,6 +8,7 @@ class WordsController < ApplicationController
     elsif @remaining_words.blank? && @answered_word_ids.blank?
       redirect_to lessons_path
     end
+    @lesson = Lesson.find(params[:lesson_id])
   end
 
   def update
@@ -31,7 +32,8 @@ class WordsController < ApplicationController
   end
 
   def result
-    @category = Lesson.find(params[:lesson_id]).category
+    @lesson = Lesson.find(params[:lesson_id])
+    @category = @lesson.category
 
     @words = @category.words.order("id")
     @word_answers =  WordAnswer.where(category_id: @category.id).order("word_id")

@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <% @categories.each do |category| %>
+  <% unless current_user.lessons.map(&:category_id).include?(category.id) %>
+    <%= form_with(url: lessons_path, local: true) do |form| %>
+      <%= form.hidden_field :category_id, value: category.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
 
-  <%= form_with(url: lessons_path, local: true) do |form| %>
-    <%= form.hidden_field :category_id, value: category.id %>
-    <%= form.hidden_field :user_id, value: current_user.id %>
-
-    <div class="actions">
-      <%= form.submit "Start Lesson in " + category.title %>
-    </div>
+      <div class="actions">
+        <%= form.submit "Start Lesson in " + category.title %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -25,6 +26,12 @@
     <% @lessons.each do |lesson| %>
       <tr>
         <td><%= link_to Category.find(lesson.category_id).title, lesson %></td>
+        <td>
+          Correct: <%= WordAnswer.eager_load(lesson: { category: :words })
+              .where("words.answer = word_answers.answer and lessons.id = #{lesson.id}").count %>
+          / <%= WordAnswer.eager_load(lesson: { category: :words }).where("lessons.id = #{lesson.id}").count %>
+          <%#TODO?: scope使うかどうしようか %>
+        </td>
       </tr>
     <% end %>
   </tbody>
