@@ -1,4 +1,4 @@
-2918/9/9 デザイン以外完了\('o')/ http://ayumi-elearning.herokuapp.com/
+2018/9/9 デザイン以外完了\\('o')/ http://ayumi-elearning.herokuapp.com/
 
 # README
 ```bash
