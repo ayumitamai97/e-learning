@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: :edit
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page])
     @current_user_followings = Relationship.where(follower_id: current_user.id).map(&:following_id)
   end
 

@@ -4,10 +4,11 @@ class Admin::CategoriesController < ApplicationController
   before_action :authorize
 
   def index
-    @categories = Category.all
+    @categories = Category.all.page(params[:page])
   end
 
   def show
+    @words = @category.words.page(params[:page])
   end
 
   def new

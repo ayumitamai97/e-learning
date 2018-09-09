@@ -3,10 +3,11 @@ class CategoriesController < ApplicationController
 
   def index
     redirect_to admin_root_path if current_user && current_user.admin?
-    @categories = Category.all
+    @categories = Category.all.page(params[:page])
   end
 
   def show
+    @words = @category.words.page(params[:page])
   end
 
   private

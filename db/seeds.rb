@@ -11,3 +11,12 @@ User.create!(name: "Taro Yamada",
               password_confirmation: "password",
               admin: false)
 end
+
+100.times do
+  Category.find(6).words.create(
+    question: "cat", option_1: "いぬ", option_2: "ねこ", option_3: "やぎ", option_4: "ひつじ", answer: "ねこ")
+end
+
+100.times do |time|
+  Category.create(title: "title" + time.to_s, description: "desc" + time.to_s)
+end

@@ -23,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @category.words.each do |word| %>
+    <% @words.each do |word| %>
     <tr>
       <td><%= word.question %></td>
       <td><%= word.option_1 %></td>
@@ -34,3 +34,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @words %>
