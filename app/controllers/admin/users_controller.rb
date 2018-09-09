@@ -4,6 +4,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all
+    @current_user_followings = Relationship.where(follower_id: current_user.id).map(&:following_id)
   end
 
   private
