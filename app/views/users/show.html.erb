@@ -12,3 +12,18 @@
   <%= User.find(follower).name %>
   <%= render "follow_form", user: follower %>
 <% end %>
+
+<h2>Activities</h2>
+<% @user.activities.each do |activity| %>
+  <% if activity.lesson_id.present? %>
+    <p><%= @user.name %> have done <%= activity.lesson_id %> at <%= activity.created_at %></p>
+  <% elsif activity.following_id.present? %>
+    <p>
+      <%= @user.name %> followed 
+      <b>
+        <%= link_to User.find(activity.following_id).name, user_path(activity.following_id) %>
+      </b> 
+      at <%= activity.created_at %>
+    </p>
+  <% end %>
+<% end %>

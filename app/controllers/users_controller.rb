@@ -15,7 +15,10 @@ class UsersController < ApplicationController
 
   def follow
     following_id = params[:following_id]
-    current_user.relationships.create!(follower_id: current_user.id, following_id: following_id)
+    ActiveRecord::Base.transaction do
+      current_user.relationships.create!(follower_id: current_user.id, following_id: following_id)
+      current_user.activities.create!(following_id: following_id)
+    end
   end
 
   def unfollow
@@ -23,5 +26,6 @@ class UsersController < ApplicationController
     relationship = 
       current_user.relationships.where(follower_id: current_user.id, following_id: following_id).first
     relationship.destroy
+    # 普通、unfollowed情報はダッシュボードに出さないですよねー…
   end
 end

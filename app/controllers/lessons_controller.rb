@@ -34,7 +34,10 @@ class LessonsController < ApplicationController
       return
     end
 
-    @lesson.save
+    ActiveRecord::Base.transaction do
+      @lesson.save!
+      current_user.activities.create!(lesson_id: @lesson.id)
+    end
 
     words = Category.find(@category_id).words
     word = words.first
